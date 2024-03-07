@@ -41,7 +41,7 @@ note: addresses can be strings, they will get interpreted by ce's symbolhandler
 - 3: Copy from CE Memory to CE Memory
 
 - Returns the address of the copy on success, nil on failure
-- 
+  
 compareMemory(address1: integer; address2: integer; size: integer;  method: integer)
 - Compares the memory and returns true if the same or false and and index where the first disparity is
 
@@ -56,7 +56,7 @@ compareMemory(address1: integer; address2: integer; size: integer;  method: inte
 **writeBytes(address, x,x,x,x,...) :** Write the given bytes to the given address from a table
 **writeBytes(address, table) :** Write the given bytes to the given address from a table
 
-readShortInteger(address) / **readByte(address) :** Reads a 8-bit integer from the specified address
+**readShortInteger(address)** / **readByte(address) :** Reads a 8-bit integer from the specified address
 **readSmallInteger(address) :** Reads a 16-bit integer from the specified address
 **readInteger(address) :** Reads a 32-bit integer from the specified address
 **readQword(address):** Reads a 64-bit integer from the specified address
@@ -64,11 +64,11 @@ readShortInteger(address) / **readByte(address) :** Reads a 8-bit integer from t
 **readFloat(address) :** Reads a single precision floating point value from the specified address
 **readDouble(address) :** Reads a double precision floating point value from the specified address
 **readString(address, maxlength, widechar OPTIONAL) :** Reads a string till it encounters a 0-terminator. Maxlength is just so you won't freeze for too long, set to 6000 if you don't care too much. Set WideChar to true if it is encoded using a widechar formatting
-writeShortInteger(address,value) / **writeByte(address,value) :** Writes a 8-bit integer to the specified address. Returns true on success
+**writeShortInteger(address,value)** / **writeByte(address,value) :** Writes a 8-bit integer to the specified address. Returns true on success
 **writeSmallInteger(address,value) :** Writes a 16-bit integer to the specified address. Returns true on success
 **writeInteger(address,value) :** Writes a 32-bit integer to the specified address. Returns true on success
 **writeQword(address, value):** Write a 64-bit integer to the specified address. Returns true on success
-writePointer(address,value)
+**writePointer(address,value)**
 **writeFloat(address,value) :** Writes a single precision floating point to the specified address. Returns true on success
 **writeDouble(address,value) :** Writes a double precision floating point to the specified address. Returns true on success
 **writeString(address,text, widechar OPTIONAL) :** Write a string to the specified address. Returns true on success
@@ -80,11 +80,11 @@ writePointer(address,value)
 **readPointerLocal(address) :** ReadQwordLocal/ReadIntegerLocal depending on the cheat engine build
 **readFloatLocal(address) :** Reads a single precision floating point value from the specified address in CE's memory
 **readDoubleLocal(address) :** Reads a double precision floating point value from the specified address in CE's memory
-readStringLocal(address, maxlength, widechar OPTIONAL)
+**readStringLocal(address, maxlength, widechar OPTIONAL)**
 **writeSmallIntegerLocal(address,value) :** Writes a 16-bit integer to the specified address in CE's memory. Returns true on success
 **writeIntegerLocal(address,value) :** Writes a 32-bit integer to the specified address in CE's memory. Returns true on success
 **writeQwordLocal(address,value) :** Writes a 64-bit integer to the specified address in CE's memory. Returns true on success
-writePointerLocal(address,value)
+**writePointerLocal(address,value)**
 **writeFloatLocal(address,value) :** Writes a single precision floating point to the specified address in CE's memory. Returns true on success
 **writeDoubleLocal(address,value) :** Writes a double precision floating point to the specified address in CE's memory. Returns true on success
 writeStringLocal(address,string, widechar OPTIONAL)
@@ -124,7 +124,7 @@ can also have second boolean parameter. If true, value will be signed.
 **enumMemoryRegions() :** Returns an indexed table containing the memorylayout. Each entry consists out of: BaseAddress, AllocationBase, AllocationProtect, RegionSize, State, Protect, Type
 
 **writeRegionToFile(filename, sourceaddress,size) :** Writes the given region to a file. Returns the number of bytes written
-readRegionFromFile(filename, destinationaddress)
+**readRegionFromFile(filename, destinationaddress)**
 
 **resetLuaState():** This will create a new lua state that will be used. (Does not destroy the old one, so memory leak)
 **getGlobalVariable(string):** Returns the given variable from the main lua state. Only basic types are supported.  (Handy for new lua state threads)
@@ -132,12 +132,12 @@ readRegionFromFile(filename, destinationaddress)
 
 **createRef(...):** integer - Returns an integer reference that you can use with getRef. Useful for objects that can only store integers and need to reference lua objects.  (Component.Tag...)
 **getRef(integer):** ... - Returns whatever the reference points out
-destroyRef(integer) - Removes the reference
+**destroyRef(integer)** - Removes the reference
 
 **encodeFunction(function):** string - Converts a given function into an encoded string that you can pass on to decodeFunction
 **decodeFunction(string):** function - Converts an encoded string back into a function.  Note that the string must be made on the same architecture as it is currently running. 32-bit can only load 32-bit, 64-bit can only load 64-bit.  So either have two scripts ready, or limit to only one architecture. (Like .EXE trainers)
 
-encodeFunctionEx(string,pathtodll OPTIONAL) - See encodeFunction but uses a script instead of a function, and lets you specify which lua dll to use (Note: Still can't use 32-bit dll's in 64-bit and vice versa)
+**encodeFunctionEx(string,pathtodll OPTIONAL)** - See encodeFunction but uses a script instead of a function, and lets you specify which lua dll to use (Note: Still can't use 32-bit dll's in 64-bit and vice versa)
 
 
 **getTranslationFolder():** Returns the path of the current translation files. Empty if there is no translation going on
@@ -210,9 +210,9 @@ autoAssemble(text, disableInfo OPTIONAL)
 **autoAssembleCheck(text, enable, targetself) :** Checks the script for syntax errors. Returns true on succes, false with an error message on failure
 
 **compile(text, address OPTIONAL, targetself OPTIONAL) :** Compiles C code and returns a table with the addresses of the symbols on success, or nil with a secondary result containing the errormessage
-compile({indexedtable containing scripts}, address OPTIONAL, targetself OPTIONAL) ) : ^ but allows multiple scripts to be compiled into one
-compileFiles({filelist}, address OPTIONAL, targetself OPTIONAL) ): ^ but takes an indexed list of files
-compileTCCLib() - Compiles the TCC library functions some C code may need to function internally
+**compile({indexedtable containing scripts}, address OPTIONAL, targetself OPTIONAL) ) :** ^ but allows multiple scripts to be compiled into one
+**compileFiles({filelist}, address OPTIONAL, targetself OPTIONAL) ):** ^ but takes an indexed list of files
+**compileTCCLib()** - Compiles the TCC library functions some C code may need to function internally
 
 **addCIncludePath(path) :** Adds an extra default include path for the compile() function
 **removeCIncludePath(path) :** Removes a specific path previously added with addCIncludePath
@@ -234,7 +234,7 @@ compileCS(text, {references}, coreAssembly OPTIONAL) - Compiles c# code and retu
 
 Note: This runs AFTER the table has been packaged already
 
-- 
+
 unregisterEXETrainerFeature(id)
 
 
@@ -475,7 +475,7 @@ callmethod: 0=stdcall, 1=cdecl
 - 2=double (64-bit float)
 - 3=ascii string (will get converted to a pointer to that string)
 - 4=wide string (will get converted to a pointer to that string)
-- 
+  
 - value: anything base type that lua can interpret
 - }
 - if just param is provided CE will guess the type based on the provided type
@@ -505,8 +505,8 @@ executeMethod(callmethod, timeout, address, {regnr=0..15,classinstance=xxxxxxxx}
 
 executeCodeLocalEx(address, {type=x,value=param1} or param1,{type=x,value=param2} or param2,...)
 - Calls a function using the given callmethod and parameters
-- 
-- 
+  
+  
 - If a direct parameter is given instead of a table entry describing the type, CE will 'guess' the type it is
 
 - Returns the E/RAX value returned by the called function (if no timeout or other interruption)
@@ -923,7 +923,7 @@ Region Class : (Region->GraphicsObject->Object)
 **createRegion():** Created an empty region
 
 properties
--
+
 methods
 - **addRectangle(x1, y1, x2, y2):** Adds a rectangle to the region
 - **addPolygon(tablewithcoordinates):** Adds an array of 2D locations. (example : {{0,0},{100,100}, {0,100}} for a triangle )
@@ -1296,15 +1296,15 @@ properties
 
 
 methods
-- append(string)
+- **append(string)**
 - **getLines() :** returns a Strings class
-- getWordWrap()
-- setWordWrap(boolean)
-- getWantTabs()
-- setWantTabs(boolean)
-- getWantReturns()
-- setWantReturns(boolean)
-- getScrollbars()
+- **getWordWrap()**
+- **setWordWrap(boolean)**
+- **getWantTabs()**
+- **setWantTabs(boolean)**
+- **getWantReturns()**
+- **setWantReturns(boolean)**
+- **getScrollbars()**
 - **setScrollbars(scrollbarenumtype) :**
 - Sets the scrollbars. Horizontal only takes affect when wordwrap is disabled
 - valid enum types:
@@ -1333,15 +1333,15 @@ properties
 - LineHeight: integer READONLY
 
 methods
-- CopyToClipboard()
-- CutToClipboard()
-- PasteFromClipboard()
-- ClearUndo()
-- Redo()
-- Undo()
-- MarkTextAsSaved()
-- ClearSelection();
-- SelectAll();
+- **CopyToClipboard()**
+- **CutToClipboard()**
+- **PasteFromClipboard()**
+- **ClearUndo()**
+- **Redo()**
+- **Undo()**
+- **MarkTextAsSaved()**
+- **ClearSelection();**
+- **SelectAll();**
 
 ButtonControl Class: (Inheritance: WinControl->Control->Component->Object)
 
